@@ -1,0 +1,7 @@
+setup.py
+email_agent.egg-info/PKG-INFO
+email_agent.egg-info/SOURCES.txt
+email_agent.egg-info/dependency_links.txt
+email_agent.egg-info/top_level.txt
+tests/test_agent.py
+tests/test_nlg.py
