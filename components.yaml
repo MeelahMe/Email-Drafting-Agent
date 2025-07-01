@@ -1,8 +1,18 @@
+repos:
+  local_repo:
+    type: local
+    path: .
+
 components:
   email_agent:
-    repo: local_dir                # code lives in the repo itself
-    file_path: ./email_agent/agent.py
-    class_name: EmailDraftingAgent
-    entry_point: __call__          # AgentOS will call obj.__call__(**kwargs)
-    requirements_path: ./requirements.txt
+    repo: local_repo
+    file_path: entrypoint.py
+    entry_point: compose_email     
+    requirements_path: requirements.txt
+    use_venv: false
+    input_parameters:
+      bullets:
+        type: string
+      sender_name:
+        type: string
 
