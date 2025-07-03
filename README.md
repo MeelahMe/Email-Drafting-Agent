@@ -80,3 +80,38 @@ agentos run email_agent \
 
 - Output: The terminal displays the formatted email.
 - Artifact: Retrieve `email.txt` from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`.
+
+## --- Configure options---
+
+## Example Output
+
+Engligh
+
+```bash
+Subject: Follow-Up
+
+Hello Maria,
+
+I wanted to follow up on your request. I have completed the task.
+
+Best regards,
+Ana
+```
+
+Spanish
+
+```bash
+Subject: Seguimiento
+
+Hola María,
+
+Quería darle seguimiento a tu solicitud. Ya he completado la tarea.
+
+Saludos,
+Ana
+```
+
+## Testing and CI/CD
+
+- **Unit Tests**: Located in `tests/`, verifying formatting logic and language normalization.
+- **CI Pipeline**: `.github/workflows/ci.yml` runs flake8, mypy, pytest, and builds a Docker image.
