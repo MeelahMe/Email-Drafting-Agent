@@ -52,3 +52,31 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## AgentOS Component Registration
+
+Register the email agent with a descriptive name and entry point:
+
+```bash
+agentos register email_agent \
+  --entry-point compose_email \
+  -r components.yaml \
+  --description "Generate professional emails from bullets (en/es)"
+```
+
+## Usage
+
+Execute the agent using the CLI:
+
+```bash
+agentos run email_agent \
+  --use-outer-env \
+  --entry-point compose_email \
+  -r components.yaml \
+  -A bullets=$'• Recipient: María\n• Purpose: Seguimiento\n• Completed the task' \
+  -A sender_name="Ana" \
+  -A tone="friendly" \
+  -A language="es"
+```
+
+- Output: The terminal displays the formatted email.
+- Artifact: Retrieve `email.txt` from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`.
