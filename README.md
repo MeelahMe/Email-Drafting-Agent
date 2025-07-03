@@ -81,7 +81,15 @@ agentos run email_agent \
 - Output: The terminal displays the formatted email.
 - Artifact: Retrieve `email.txt` from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`.
 
-## --- Configure options---
+## Configuration Options
+
+| Flag          | Description                                            | Example                |
+| ------------- | ------------------------------------------------------ | ---------------------- |
+| `bullets`     | Bullet points with recipient, purpose, and key details | `-A bullets="$..."`    |
+| `sender_name` | Name to appear in the closing                          | `-A sender_name="Ana"` |
+| `tone`        | Tone of the email (`formal`, `friendly`, etc.)         | `-A tone="friendly"`   |
+| `language`    | Output language (`en` or `es`)                         | `-A language="es"`     |
+
 
 ## Example Output
 
