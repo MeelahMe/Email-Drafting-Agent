@@ -115,3 +115,19 @@ Ana
 
 - **Unit Tests**: Located in `tests/`, verifying formatting logic and language normalization.
 - **CI Pipeline**: `.github/workflows/ci.yml` runs flake8, mypy, pytest, and builds a Docker image.
+
+## Monitoring and Observability
+
+- **MLflow UI**: Visualize runs, compare outputs, and download artifacts.
+- **Structured Logging**: Timestamps, execution metrics, and error tracking.
+
+## Optional Live Demo
+
+Expose a local HTTP endpoint via ngrok for interactive testing:
+```bash
+ngrok http 8000
+```
+
+## Contributing 
+
+Contributions are welcome. Please fork the repository and submit pull requests for enhancements or fixes.
