@@ -1,54 +1,41 @@
-# Overview
+# Email Drafting Agent
 
-The Email Drafting Agent converts minimal bullet-point inputs into professional, multilingual email drafts. Leveraging the GenAI AgentOS platform, it streamlines email creation by generating:
-
-A clear, context-aware subject line
-
-Natural greetings and closings in English or Spanish
-
-Concise, well-structured body paragraphs
-
-All outputs are logged as MLflow artifacts for auditability and version control.
+The Email Drafting Agent transforms concise bullet‑point inputs into polished, professional emails in English or Spanish. Built on the GenAI AgentOS platform, it generates context‑aware subjects, natural greetings and closings, and well‑structured body content, with all outputs logged via MLflow for auditability.
 
 ## Key Features
 
-- **Bullet-to-Email Transformation**: Automatically map bullet inputs (recipient, purpose, details) to a formatted email.
-- **Multilingual Capabilities**: Support for English (en) and Spanish (es) with automated greeting normalization.
-- **Customizable Tone**: Adjust the email’s tone (e.g., formal, friendly) via a simple CLI flag.
-- **Instant Console Output**: Render the full email (subject + body) directly in the terminal.
-- **Persistent Artifacts**: Log the complete email as email.txt in MLflow under each run’s artifacts.
-- **Extensible Architecture**: Modular codebase designed for easy addition of languages, templates, or output formats.
+- **Bullet‑to‑Email Transformation**: Map bullet points (recipient, purpose, details) to a formatted email.
+- **Multilingual Support**: Automatic greetings, body rewriting, and closings in English (`en`) or Spanish (`es`).
+- **Customizable Tone**: Specify tone (`formal`, `friendly`, `urgent`, technical) via CLI flag.
+- **Robust Parsing**: Accepts bullets marked with `•`, `-`, `*`, numbered lists, and continuations.
+- **Style‑Guide Enforcement**: Oxford commas, parallel list structure, title‑case subjects, and proper punctuation.
+- **JSON/Code Payloads**: Includes sample payloads or code snippets verbatim.
+- **CI/CD and Observability**: Linted, type‑checked, unit‑tested, and logged to MLflow.
 
 ## Architecture
 
-1. AgentOS Entry Point: compose_email function registers with AgentOS.
-2. Core Agent: EmailDraftingAgent encapsulates prompt engineering and template rendering.
-3. Output Handling:
-- STDOUT: Printed for immediate CLI feedback.
-- MLflow: Logged as a plaintext artifact for later retrieval.
-4. Language Normalization: Regex-based greeting replacement ensures correct salutations.
+1. AgentOS Entry Point: `compose_email` function (AgentOS CLI).
+2. Agent Logic: `EmailDraftingAgent` in `agent.py` parses input and applies NLG rules.
+3. NLG Helpers: `rewrite_purpose` and `rewrite_detail` in `nlg.py` produce natural sentences.
+4. Output:
+- STDOUT: Immediate email preview.
+- MLflow: Saves `email.txt` artifact under each run.
 
 ## Prerequisites
 
 - Python 3.9 or later
-- Virtual environment (`venv` or equivalent)
+- Virtual environment (`venv`, `virtualenv`)
 - GenAI AgentOS CLI
-- MLflow
+- MLflow installed
 
 ## Installation
-
-1. Clone the repository
 
 ```bash
 git clone https://github.com/<your-username>/email-drafting-agent.git
 cd email-drafting-agent
-```
-
-2. Set up the environment
-
-```bash
 python3 -m venv .venv
 source .venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -93,7 +80,7 @@ agentos run email_agent \
 
 ## Example Output
 
-Engligh
+English
 
 ```bash
 Subject: Follow-Up
@@ -121,8 +108,8 @@ Ana
 
 ## Testing and CI/CD
 
-- **Unit Tests**: Located in `tests/`, verifying formatting logic and language normalization.
-- **CI Pipeline**: `.github/workflows/ci.yml` runs flake8, mypy, pytest, and builds a Docker image.
+- Unit Tests: in `email_agent/tests/`, covering parsing and NLG logic.
+- CI Pipeline: `.github/workflows/ci.yml` runs flake8, mypy, pytest, and stores results.
 
 ## Monitoring and Observability
 
