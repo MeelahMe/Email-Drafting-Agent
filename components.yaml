@@ -7,12 +7,22 @@ components:
   email_agent:
     repo: local_repo
     file_path: entrypoint.py
-    entry_point: compose_email     
+    entry_point: compose_email
     requirements_path: requirements.txt
     use_venv: false
     input_parameters:
       bullets:
         type: string
+        description: "Bullet list of message content"
       sender_name:
         type: string
+        description: "Sender's name for the email signature"
+      tone:
+        type: string
+        description: "Tone of the email: formal, friendly, or concise"
+        default: "formal"
+      language:
+        type: string
+        description: "Language code for parser/templates (e.g. en, es, fr)"
+        default: "en"
 

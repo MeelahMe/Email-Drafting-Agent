@@ -1,27 +1,49 @@
 import random
-from typing import List
+from typing import Dict, List
 
-GREETINGS: List[str] = [
-    "Hi", "Hello", "Good morning", "Good afternoon", "Good evening", "Greetings"
-]
-CLOSINGS: List[str] = [
-    "Best regards", "Sincerely", "Thank you", "Kind regards", "Warm regards", "Warmly"
-]
-# Phrases to introduce the purpose of the email
-PURPOSE_INTROS: List[str] = [
-    "I wanted to let you know that", "Just a quick update to say that",
-    "I’m reaching out to share that", "Please note that"
-]
-# Phrases to introduce detail points
-POINT_INTROS: List[str] = [
-    "I have", "Here's an update on", "Please note", "FYI"
-]
+# Nested: language → tone → section → list of options
+TEMPLATES: Dict[str, Dict[str, Dict[str, List[str]]]] = {
+    "en": {
+        "formal": {
+            "greetings": ["Dear", "Greetings", "Good morning", "Good afternoon", "Good evening"],
+            "closings": ["Sincerely", "Kind regards", "Yours faithfully"],
+        },
+        "friendly": {
+            "greetings": ["Hi", "Hello", "Hey there", "Good to hear from you"],
+            "closings": ["Cheers", "Thanks", "Talk soon"],
+        },
+        "concise": {
+            "greetings": ["Hello"],
+            "closings": ["Best", "Regards"],
+        },
+    },
+    "es": {
+        "formal": {
+            "greetings": ["Estimado", "Saludos", "Buenos días", "Buenas tardes", "Buenas noches"],
+            "closings": ["Atentamente", "Saludos cordiales", "Cordialmente"],
+        },
+        "friendly": {
+            "greetings": ["Hola", "¡Hey!"],
+            "closings": ["¡Gracias!", "Nos vemos"],
+        },
+        "concise": {
+            "greetings": ["Hola"],
+            "closings": ["Saludos"],
+        },
+    },
+    # you can add more languages here...
+}
 
-def pick(items: List[str]) -> str:
+def pick_templated(section: str, tone: str, language: str) -> str:
     """
-    Selects a random item from a non-empty list.
-    Raises ValueError if the list is empty.
+    Pick a random string from TEMPLATES[language][tone][section],
+    falling back to English/formal if needed.
     """
+    lang_block = TEMPLATES.get(language, TEMPLATES["en"])
+    tone_block = lang_block.get(tone, lang_block["formal"])
+    items = tone_block.get(section, [])
     if not items:
-        raise ValueError("No items to choose from")
+        # ultimate fallback
+        items = TEMPLATES["en"]["formal"][section]
     return random.choice(items)
+
