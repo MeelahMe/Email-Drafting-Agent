@@ -1,0 +1,15 @@
+README.md
+setup.py
+email_agent/__init__.py
+email_agent/agent.py
+email_agent/llm.py
+email_agent/nlg.py
+email_agent/parser.py
+email_agent/setup.py
+email_agent/templates.py
+email_drafting_agent.egg-info/PKG-INFO
+email_drafting_agent.egg-info/SOURCES.txt
+email_drafting_agent.egg-info/dependency_links.txt
+email_drafting_agent.egg-info/entry_points.txt
+email_drafting_agent.egg-info/requires.txt
+email_drafting_agent.egg-info/top_level.txt

@@ -1,0 +1,2 @@
+[agentos.components]
+email_agent = entrypoint:compose_email

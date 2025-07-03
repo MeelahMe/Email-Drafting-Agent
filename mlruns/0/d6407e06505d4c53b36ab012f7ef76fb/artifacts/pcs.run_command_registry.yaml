@@ -1,0 +1,31 @@
+components:
+  email_agent:
+    class_name: null
+    dependencies: {}
+    file_path: entrypoint.py
+    instantiate: false
+    repo: local_repo
+    requirements_path: requirements.txt
+registries: []
+repos:
+  local_repo:
+    path: /Users/jameelahmercer/Desktop/email-drafting-agent
+    type: local
+run_commands:
+  '1362937425358221705':
+    argument_set:
+      024db4653eed102d945662c7c71d59aa13aff91c:
+        email_agent:
+          compose_email:
+            bullets: "\u2022 Recipient: DevOps Lead\n\u2022 Purpose: Document upgrade\
+              \ process\n\u2022 Context:\n  - Kubernetes 1.24 \u2192 1.27\n  - CRD\
+              \ schema changes in monitoring API\n\u2022 Steps:\n  1. Drain nodes\n\
+              \  2. Upgrade control plane\n  3. Apply CRD patches\n  4. Validate endpoints\n\
+              \u2022 Reference: https://example.com/upgrade-guide"
+            language: en
+            sender_name: Ana
+            tone: technical
+    component: email_agent
+    entry_point: compose_email
+    log_return_value: true
+runs: {}

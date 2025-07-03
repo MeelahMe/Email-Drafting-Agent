@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/jameelahmercer/Desktop/email-drafting-agent/mlruns/0/2c5cd520ffdd4014834d3060a93ea94c/artifacts
+end_time: 1751511387770
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2c5cd520ffdd4014834d3060a93ea94c
+run_name: sedate-mare-406
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751511387731
+status: 3
+tags: []
+user_id: jameelahmercer

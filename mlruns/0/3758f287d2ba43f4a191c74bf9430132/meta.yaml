@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/jameelahmercer/Desktop/email-drafting-agent/mlruns/0/3758f287d2ba43f4a191c74bf9430132/artifacts
+end_time: 1751507462060
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3758f287d2ba43f4a191c74bf9430132
+run_name: redolent-snipe-24
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751507462024
+status: 3
+tags: []
+user_id: jameelahmercer

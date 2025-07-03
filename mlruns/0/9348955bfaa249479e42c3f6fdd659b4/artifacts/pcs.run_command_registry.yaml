@@ -1,0 +1,32 @@
+components:
+  email_agent:
+    class_name: null
+    dependencies: {}
+    file_path: entrypoint.py
+    instantiate: false
+    repo: local_repo
+    requirements_path: requirements.txt
+registries: []
+repos:
+  local_repo:
+    path: /Users/jameelahmercer/Desktop/email-drafting-agent
+    type: local
+run_commands:
+  '1131009936032459008':
+    argument_set:
+      caff8cd550e78e29e4566b01589b216198d7fe30:
+        email_agent:
+          compose_email:
+            bullets: "\u2022 Point 01: Detail about milestone 02\n\u2022 Point 03:\
+              \ Detail about milestone 04\n\u2022 Point 05: Detail about milestone\
+              \ 06\n\u2022 Point 07: Detail about milestone 08\n\u2022 Point 09: Detail\
+              \ about milestone 10\n\u2022 Point 11: Detail about milestone 12\n\u2022\
+              \ Point 13: Detail about milestone 14\n\u2022 Point 15: Detail about\
+              \ milestone 00"
+            language: en
+            sender_name: Ana
+            tone: formal
+    component: email_agent
+    entry_point: compose_email
+    log_return_value: true
+runs: {}

@@ -1,0 +1,31 @@
+components:
+  email_agent:
+    class_name: null
+    dependencies: {}
+    file_path: entrypoint.py
+    instantiate: false
+    repo: local_repo
+    requirements_path: requirements.txt
+registries: []
+repos:
+  local_repo:
+    path: /Users/jameelahmercer/Desktop/email-drafting-agent
+    type: local
+run_commands:
+  '1684189557640931160':
+    argument_set:
+      58f5f5d273df9464529f7e568b4551f9b90f9a19:
+        email_agent:
+          compose_email:
+            bullets: "\u2022 Recipient: Dr. Kim, Head of Research\n\u2022 Purpose:\
+              \ Share latest findings and attach report\n\u2022 Findings: Our team\
+              \ observed a 12% increase in model accuracy after hyperparameter tuning\n\
+              \u2022 Next steps: schedule a call, finalize the draft paper by Friday\n\
+              \u2022 Attachment: accuracy_report.pdf"
+            language: en
+            sender_name: Ana
+            tone: formal
+    component: email_agent
+    entry_point: compose_email
+    log_return_value: true
+runs: {}

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/jameelahmercer/Desktop/email-drafting-agent/mlruns/0/0eccba92668c47ae947895b99a4eb86f/artifacts
+end_time: 1751509095148
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0eccba92668c47ae947895b99a4eb86f
+run_name: awesome-wolf-455
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751509095095
+status: 3
+tags: []
+user_id: jameelahmercer

@@ -1,0 +1,23 @@
+email: 'Good evening, Team and Project Manager
+
+
+  I''m sending an alert to assign urgent tasks.
+
+
+  production outage in us-east-1 cluster.
+
+
+  5 services down, monitoring alerts triggered.
+
+
+  Action items: Alice: investigate root cause, Bob: restart failing services, and
+  Carol: notify stakeholders.
+
+
+  within 30 minutes.
+
+
+  Thank you for your immediate attention,
+
+  Ana'
+subject: 'URGENT: Alert and assign urgent tasks'

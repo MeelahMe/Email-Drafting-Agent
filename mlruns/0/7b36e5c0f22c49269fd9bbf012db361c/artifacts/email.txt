@@ -1,0 +1,20 @@
+Subject: Review Api Changes And Share Sample Payload
+
+Good evening, Backend Team,
+
+I wanted to let you know about Review API changes and share sample payload.
+
+Added POST /v2/users endpoint.
+
+Request body now requires email_verified: boolean.
+
+Deprecates username field in response.
+
+Updated error codes for 400 Bad Request.
+
+{"email": "user@example.com", "email_verified": true}.
+
+EOD Monday (June 30–July 1).
+
+Sincerely,
+Ana

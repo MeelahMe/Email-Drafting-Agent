@@ -1,0 +1,5 @@
+email: "Good evening DevOps Lead,\n\nI wanted to let you know about Document upgrade\
+  \ process.\n\nKubernetes 1.24 \u2192 1.27.\n\nCRD schema changes in monitoring API.\n\
+  \nDrain nodes.\n\nUpgrade control plane.\n\nApply CRD patches.\n\nValidate endpoints.\n\
+  \nhttps://example.com/upgrade-guide.\n\nSincerely,\nAna"
+subject: Document upgrade process
