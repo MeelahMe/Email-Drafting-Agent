@@ -1,3 +1,6 @@
 agentos>=0.2               
 PyYAML>=6.0
+fastapi
+uvicorn[standard]
+pydantic
 
