@@ -1,8 +1,0 @@
-Subject: Document upgrade process
-
-Good afternoon DevOps Lead,
-
-I wanted to let you know about Document upgrade process. Context:. Kubernetes 1.24 → 1.27. CRD schema changes in monitoring API. Steps:. 1. Drain nodes. 2. Upgrade control plane. 3. Apply CRD patches. 4. Validate endpoints. Reference: https://example.com/upgrade-guide.
-
-Sincerely,
-Ana

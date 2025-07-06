@@ -1,8 +1,0 @@
-Subject: Seguimiento de varios puntos
-
-Estimado María López,
-
-Quería darle seguimiento a de varios puntos. Puntos:. Cliente A aprobó el diseño inicial. Cliente B solicita cambios en la sección de API. Fecha límite: 10 de julio. Nota: documentar versiones anteriores.
-
-Cordialmente,
-Ana

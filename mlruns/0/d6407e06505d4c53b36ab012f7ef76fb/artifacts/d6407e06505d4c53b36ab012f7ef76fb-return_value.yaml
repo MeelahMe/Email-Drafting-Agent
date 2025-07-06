@@ -1,6 +1,0 @@
-email: "Good afternoon DevOps Lead,\n\nI wanted to let you know about Document upgrade\
-  \ process. Context:. Kubernetes 1.24 \u2192 1.27. CRD schema changes in monitoring\
-  \ API. Steps:. 1. Drain nodes. 2. Upgrade control plane. 3. Apply CRD patches. 4.\
-  \ Validate endpoints. Reference: https://example.com/upgrade-guide.\n\nSincerely,\n\
-  Ana"
-subject: Document upgrade process

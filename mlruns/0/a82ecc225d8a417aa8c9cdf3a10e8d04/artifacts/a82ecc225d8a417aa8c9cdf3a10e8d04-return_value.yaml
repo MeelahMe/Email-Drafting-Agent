@@ -1,6 +1,0 @@
-email: "Good evening, \n\nI wanted to let you know about Alert and assign urgent tasks.\n\
-  \nTeam, Project Manager.\n\nproduction outage in us-east-1 cluster.\n\n5 services\
-  \ down, monitoring alerts triggered.\n\nAction items: Alice: investigate root cause,\
-  \ Bob: restart failing services, and Carol: notify stakeholders.\n\nwithin 30 minutes.\n\
-  \nThank you for your immediate attention,\nAna"
-subject: Alert and assign urgent tasks
