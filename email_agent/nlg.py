@@ -1,6 +1,7 @@
 # File: email_agent/nlg.py
 import re
 
+
 def rewrite_purpose(purpose: str, language: str = "en") -> str:
     """
     Generate a natural sentence for the email purpose based on a brief phrase.
@@ -18,7 +19,7 @@ def rewrite_purpose(purpose: str, language: str = "en") -> str:
         parallel clauses: “I'm writing to review the X, share the Y, and update the documentation.”
       • Fallback: “I wanted to let you know about {purpose}.”
     """
-    p = purpose.strip().rstrip('.')
+    p = purpose.strip().rstrip(".")
     lang = language.lower()
 
     # Spanish mappings
@@ -44,16 +45,16 @@ def rewrite_purpose(purpose: str, language: str = "en") -> str:
         return "I'm reaching out with a request regarding timeline."
 
     # Multi-action clause
-    actions = [a.strip() for a in re.split(r',\s*|\s+and\s+', p) if a.strip()]
+    actions = [a.strip() for a in re.split(r",\s*|\s+and\s+", p) if a.strip()]
     if len(actions) > 1:
         phrases: list[str] = []
         for a in actions:
             low_a = a.lower()
             if low_a.startswith("review "):
-                content = a[len("review "):].strip()
+                content = a[len("review ") :].strip()
                 phrases.append(f"review the {content}")
             elif low_a.startswith("share "):
-                content = a[len("share "):].strip()
+                content = a[len("share ") :].strip()
                 phrases.append(f"share the {content}")
             elif low_a.startswith("update docs"):
                 phrases.append("update the documentation")
@@ -64,6 +65,7 @@ def rewrite_purpose(purpose: str, language: str = "en") -> str:
 
     # Fallback English
     return f"I wanted to let you know about {p}."
+
 
 def rewrite_detail(point: str, language: str = "en") -> str:
     """
@@ -79,7 +81,7 @@ def rewrite_detail(point: str, language: str = "en") -> str:
       • Docs update: “See `docs/...` for full spec.”
       • Fallback: Capitalize properly and add period.
     """
-    text = point.strip().rstrip('.')
+    text = point.strip().rstrip(".")
     lang = language.lower()
 
     # Spanish special cases
@@ -97,10 +99,10 @@ def rewrite_detail(point: str, language: str = "en") -> str:
     # English special cases
     low = text.lower()
     if low.startswith("completed "):
-        rest = text[len("Completed "):].strip()
+        rest = text[len("Completed ") :].strip()
         return f"I have completed the {rest}."
     if low.startswith("finished "):
-        rest = text[len("Finished "):].strip()
+        rest = text[len("Finished ") :].strip()
         return f"I have finished the {rest}."
     if low.startswith("attached "):
         m = re.match(r"(?i)attached\s+(.*)", text)
@@ -116,7 +118,6 @@ def rewrite_detail(point: str, language: str = "en") -> str:
     if not text:
         return ""
     formatted = text[0].upper() + text[1:]
-    if not formatted.endswith('.'):
-        formatted += '.'
+    if not formatted.endswith("."):
+        formatted += "."
     return formatted
-

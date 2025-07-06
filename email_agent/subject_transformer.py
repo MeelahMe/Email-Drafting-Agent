@@ -10,6 +10,7 @@ preserving uppercase acronyms and stripping stray “and”.
 import re
 from typing import List
 
+
 def _titleize_segment(seg: str) -> str:
     """
     Title-case a segment, preserving all-uppercase acronyms.
@@ -25,6 +26,7 @@ def _titleize_segment(seg: str) -> str:
         else:
             result.append(word.capitalize())
     return " ".join(result)
+
 
 def rewrite_subject_segments(subject: str) -> str:
     """
@@ -42,7 +44,7 @@ def rewrite_subject_segments(subject: str) -> str:
         return ""
 
     # Split on commas or the word 'and'
-    raw_parts = re.split(r',\s*|\s+and\s+', subject)
+    raw_parts = re.split(r",\s*|\s+and\s+", subject)
     parts: List[str] = []
     for p in raw_parts:
         p = p.strip()
@@ -50,7 +52,7 @@ def rewrite_subject_segments(subject: str) -> str:
         if not p or p.lower() == "and":
             continue
         # remove leading 'and '
-        p = re.sub(r'(?i)^and\s+', '', p)
+        p = re.sub(r"(?i)^and\s+", "", p)
         parts.append(p)
 
     count = len(parts)
@@ -68,4 +70,3 @@ def rewrite_subject_segments(subject: str) -> str:
         return f"{titled[0]} & {titled[1]}"
     # Three or more: Oxford comma before final ampersand
     return ", ".join(titled[:-1]) + f", & {titled[-1]}"
-

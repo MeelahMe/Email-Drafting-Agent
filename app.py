@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from entrypoint import compose_email  
+from entrypoint import compose_email
 from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
+
 
 @app.get("/", response_class=JSONResponse)
 async def health_check():
@@ -12,6 +13,7 @@ async def health_check():
     Simple health check so GET / returns 200 instead of 404.
     """
     return {"status": "Email Drafting Agent is up – POST to /draft_email"}
+
 
 @app.get("/favicon.ico")
 async def favicon():
