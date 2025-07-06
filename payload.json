@@ -1,0 +1,6 @@
+{
+  "bullets": "• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)",
+  "sender_name": "Ana",
+  "tone": "technical",
+  "language": "en"
+}

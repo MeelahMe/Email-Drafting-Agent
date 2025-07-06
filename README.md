@@ -4,7 +4,7 @@
 
 ---
 
-## 📝 Key Features
+## Key Features
 
 - **Bullet→Email Transformation**  
   Converts concise bullets (`Recipient:…`, `Purpose:…`, `Changes:…`, etc.) into full emails with subject, greeting, body, and closing.
@@ -23,7 +23,7 @@
 
 ---
 
-## 🚀 Architecture
+## Architecture
 
 1. **Entry Point**: `compose_email` (AgentOS CLI)  
 2. **Core Logic**:  
@@ -36,7 +36,7 @@
 
 ---
 
-## 🛠 Prerequisites & Installation
+## Prerequisites & Installation
 
 ```bash
 # Clone & set up venv
@@ -51,7 +51,7 @@ pip install -r requirements.txt
 
 ```
 
-## 📦 Register with AgentOS
+## Register with AgentOS
 
 Register the email agent with a descriptive name and entry point:
 
@@ -62,7 +62,7 @@ agentos register email_agent \
   --description "Generate professional emails from bullets (en/es)"
 ```
 
-## 💻 Usage
+## Usage
 
 Run from the CLI with your bullets. Here’s the example we tested:
 
@@ -143,27 +143,42 @@ Ana
 
 ## Live Demo
 
-Expose your agent over HTTP (e.g. ngrok) and test with:
+Spin up the service, expose it via ngrok, then fire your payload:
+
+1. **Start the API server**  
 
 ```bash
-curl -X POST https://1234abcd.ngrok.io/draft_email \
-  -H "Content-Type: application/json" \
-  -d '{
-    "bullets": "• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)'",
-    "sender_name": "Ana",
-    "tone": "technical",
-    "language": "en"
-}'
+   uvicorn app:app --host 0.0.0.0 --port 8000
 ```
 
-Expected JSON response:
+2. **Expose it publicly**
+
+```bash
+ngrok http 8000 --host-header="localhost:8000"
+```
+
+- Copy the HTTPS Forwarding URL that ngrok prints (e.g. https://abc123.ngrok-free.app).
+
+3. **Prepare your payload** in `payload.json` (in your project root):
 
 ```bash
 {
-  "subject": "Review API Changes, Share Sample Payload, & Update Docs",
-  "email": "Good afternoon, Backend Team and QA & DevOps,\n\nI'm writing to review the API changes, share the sample payload, and update the documentation.\n\nChanges:\n- Added `POST /v2/users` endpoint.\n- Request body now requires `email_verified: boolean`.\n- Must log timestamp in ISO format.\n- Default to `false` if missing.\n- Deprecates `username` field in response.\n- Error codes revamped for 400, 401, 403.\n- Rate limits set to 1,000 RPM.\n\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\", \"admin\"]\n  }\n  ```\n\nSee `docs/api_v2.md` for full spec.\n\nDeadline: EOD Friday (UTC−07:00).\n\nSincerely,\nAna"
+  "bullets": "• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)",
+  "sender_name": "Ana",
+  "tone": "technical",
+  "language": "en"
 }
 ```
+
+4. **Invoke the endpoint**
+
+ ```bash
+    curl -i -X POST "https://abc123.ngrok-free.app/draft_email" \
+      -H "Content-Type: application/json" \
+      --data @payload.json
+ ```
+
+You’ll receive a `200 OK` and the JSON response with your subject and email body.
 
 ## Testing and CI/CD
 
