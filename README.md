@@ -50,6 +50,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 ```
+---
 
 ## Register with AgentOS
 
@@ -61,6 +62,8 @@ agentos register email_agent \
   -r components.yaml \
   --description "Generate professional emails from bullets (en/es)"
 ```
+
+---
 
 ## Usage
 
@@ -85,6 +88,8 @@ agentos run email_agent \
 - Output: Email printed to console
 - Artifact: retrieve from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`
 
+---
+
 ## Configuration Options
 
 | Flag          | Description                                            | Example                |
@@ -94,6 +99,7 @@ agentos run email_agent \
 | `tone`        | Tone of the email (`formal`, `friendly`, etc.)         | `-A tone="friendly"`   |
 | `language`    | Output language (`en` or `es`)                         | `-A language="es"`     |
 
+---
 
 ## Example Output
 
@@ -141,6 +147,8 @@ Sincerely,
 Ana
 ```
 
+---
+
 ## Live Demo
 
 Spin up the service, expose it via ngrok, then fire your payload:
@@ -179,15 +187,21 @@ ngrok http 8000 --host-header="localhost:8000"
 
 You’ll receive a `200 OK` and the JSON response with your subject and email body.
 
+---
+
 ## Testing and CI/CD
 
 - Unit Tests: in `email_agent/tests/`, covering parsing and NLG logic.
 - CI Pipeline: `.github/workflows/ci.yml` runs flake8, mypy, pytest, and stores results.
 
+---
+
 ## Monitoring and Observability
 
 - **MLflow UI**: Visualize runs, compare outputs, and download artifacts.
 - **Structured Logging**: Timestamps, execution metrics, and error tracking.
+
+---
 
 ## Optional Live Demo
 
@@ -195,6 +209,7 @@ Expose a local HTTP endpoint via ngrok for interactive testing:
 ```bash
 ngrok http 8000
 ```
+---
 
 ## Contributing 
 
