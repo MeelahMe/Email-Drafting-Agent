@@ -38,17 +38,31 @@
 
 ## Prerequisites & Installation
 
+Before you begin, make sure you have:
+
+- **Python 3.9+** (`python3 --version`)  
+- **Git** (`git --version`)  
+- **GenAI AgentOS CLI** installed and logged in  
+- **MLflow** (optional, for artifact logging)
+
+Then run:
+
 ```bash
-# Clone & set up venv
-git clone https://github.com/<you>/email-drafting-agent.git
-cd email-drafting-agent
+# 1. Clone the repo
+git clone git@github.com:MeelahMe/Email-Drafting-Agent.git
+cd Email-Drafting-Agent
+
+# 2. Create & activate a Python virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
 
-# Install dependencies
+# 3. Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 
+Tip: If you haven’t installed the AgentOS CLI or MLflow yet, you can add:
+
+pip install agentos-cli mlflow
 ```
 ---
 
