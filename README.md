@@ -169,7 +169,6 @@ ngrok http 8000 --host-header="localhost:8000"
   "language": "en"
 }
 ```
-
 4. **Invoke the endpoint**
 
  ```bash
