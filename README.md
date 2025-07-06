@@ -1,45 +1,57 @@
 # Email Drafting Agent
 
-The Email Drafting Agent transforms concise bullet‑point inputs into polished, professional emails in English or Spanish. Built on the GenAI AgentOS platform, it generates context‑aware subjects, natural greetings and closings, and well‑structured body content, with all outputs logged via MLflow for auditability.
+**Transform bullet-point inputs into polished, professional emails**—in English or Spanish—using a GenAI-powered AgentOS component. Outputs are type-checked, linted, unit-tested, and logged via MLflow for full auditability.
 
-## Key Features
+---
 
-- **Bullet‑to‑Email Transformation**: Map bullet points (recipient, purpose, details) to a formatted email.
-- **Multilingual Support**: Automatic greetings, body rewriting, and closings in English (`en`) or Spanish (`es`).
-- **Customizable Tone**: Specify tone (`formal`, `friendly`, `urgent`, technical) via CLI flag.
-- **Robust Parsing**: Accepts bullets marked with `•`, `-`, `*`, numbered lists, and continuations.
-- **Style‑Guide Enforcement**: Oxford commas, parallel list structure, title‑case subjects, and proper punctuation.
-- **JSON/Code Payloads**: Includes sample payloads or code snippets verbatim.
-- **CI/CD and Observability**: Linted, type‑checked, unit‑tested, and logged to MLflow.
+## 📝 Key Features
 
-## Architecture
+- **Bullet→Email Transformation**  
+  Converts concise bullets (`Recipient:…`, `Purpose:…`, `Changes:…`, etc.) into full emails with subject, greeting, body, and closing.
 
-1. AgentOS Entry Point: `compose_email` function (AgentOS CLI).
-2. Agent Logic: `EmailDraftingAgent` in `agent.py` parses input and applies NLG rules.
-3. NLG Helpers: `rewrite_purpose` and `rewrite_detail` in `nlg.py` produce natural sentences.
-4. Output:
-- STDOUT: Immediate email preview.
-- MLflow: Saves `email.txt` artifact under each run.
+- **Multilingual & Tone Control**  
+  English (`en`) or Spanish (`es`), with tones: `formal`, `friendly`, `urgent`, or `technical`.
 
-## Prerequisites
+- **Style-Guide Enforcement**  
+  Oxford commas, parallel lists, title-case subjects, proper sentence casing, and punctuation.
 
-- Python 3.9 or later
-- Virtual environment (`venv`, `virtualenv`)
-- GenAI AgentOS CLI
-- MLflow installed
+- **Code & JSON Payloads**  
+  Preserves fenced code/JSON blocks verbatim (indented for readability).
 
-## Installation
+- **CI/CD & Observability**  
+  — Linted (`flake8`), type-checked (`mypy`), unit-tested (`pytest`), and logged to MLflow.
+
+---
+
+## 🚀 Architecture
+
+1. **Entry Point**: `compose_email` (AgentOS CLI)  
+2. **Core Logic**:  
+   - **`agent.py`**: `EmailDraftingAgent` parses bullets, builds subject & body.  
+   - **`nlg.py`**: `rewrite_purpose` & `rewrite_detail` craft natural sentences.  
+   - **`subject_transformer.py`**: Title-cases & Oxford-comma-joins subjects.  
+3. **Outputs**:  
+   - **STDOUT**: Immediate email preview.  
+   - **MLflow**: `email.txt` artifact per run.
+
+---
+
+## 🛠 Prerequisites & Installation
 
 ```bash
-git clone https://github.com/<your-username>/email-drafting-agent.git
+# Clone & set up venv
+git clone https://github.com/<you>/email-drafting-agent.git
 cd email-drafting-agent
 python3 -m venv .venv
 source .venv/bin/activate
+
+# Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
+
 ```
 
-## AgentOS Component Registration
+## 📦 Register with AgentOS
 
 Register the email agent with a descriptive name and entry point:
 
@@ -50,23 +62,28 @@ agentos register email_agent \
   --description "Generate professional emails from bullets (en/es)"
 ```
 
+## 💻 Usage
+
+Run from the CLI with your bullets. Here’s the example we tested:
+
+```bash
 ## Usage
 
-Execute the agent using the CLI:
+Run the agent via AgentOS CLI with your bullet input:
 
 ```bash
 agentos run email_agent \
   --use-outer-env \
-  --entry-point compose_email \
   -r components.yaml \
-  -A bullets=$'• Recipient: María\n• Purpose: Seguimiento\n• Completed the task' \
+  --entry-point compose_email \
+  -A bullets=$'• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)' \
   -A sender_name="Ana" \
-  -A tone="friendly" \
-  -A language="es"
+  -A tone="technical" \
+  -A language="en"
 ```
 
-- Output: The terminal displays the formatted email.
-- Artifact: Retrieve `email.txt` from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`.
+- Output: Email printed to console
+- Artifact: retrieve from `mlruns/<experiment>/0/<run-id>/artifacts/email.txt`
 
 ## Configuration Options
 
@@ -80,30 +97,72 @@ agentos run email_agent \
 
 ## Example Output
 
-English
+**Command:**
 
 ```bash
-Subject: Follow-Up
+agentos run email_agent \
+  --use-outer-env \
+  -r components.yaml \
+  --entry-point compose_email \
+  -A bullets=$'• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)' \
+  -A sender_name=\"Ana\" \
+  -A tone=\"technical\"
+```
 
-Hello Maria,
+**Output**:
 
-I wanted to follow up on your request. I have completed the task.
+```bash
+Subject: Review API Changes, Share Sample Payload, & Update Docs
 
-Best regards,
+Good afternoon, Backend Team and QA & DevOps,
+
+I'm writing to review the API changes, share the sample payload, and update the documentation.
+
+Changes:
+- Added `POST /v2/users` endpoint.
+- Request body now requires `email_verified: boolean`.
+- Must log timestamp in ISO format.
+- Default to `false` if missing.
+- Deprecates `username` field in response.
+- Error codes revamped for 400, 401, 403.
+- Rate limits set to 1,000 RPM.
+
+  ```json
+  {
+    "email": "user@example.com",
+    "email_verified": true,
+    "roles": ["user", "admin"]
+  }
+    ```
+See docs/api_v2.md for full spec.
+Deadline: EOD Friday (UTC-07:00).
+
+Sincerely,
 Ana
 ```
 
-Spanish
+## Live Demo
+
+Expose your agent over HTTP (e.g. ngrok) and test with:
 
 ```bash
-Subject: Seguimiento
+curl -X POST https://1234abcd.ngrok.io/draft_email \
+  -H "Content-Type: application/json" \
+  -d '{
+    "bullets": "• Recipients: Backend Team; QA & DevOps\n• Purpose: Review API changes, share sample payload, and update docs\n• Changes:\n  1. Added `POST /v2/users` endpoint\n     - Request body now requires `email_verified: boolean`\n       * Must log timestamp in ISO format\n       * Default to `false` if missing\n     - Deprecates `username` field in response\n  2. Error codes revamped for 400, 401, 403\n  3. Rate limits set to 1000 RPM\n• Sample payload (JSON):\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n• Docs update: see `docs/api_v2.md` for full spec\n• Deadline: EOD Friday (UTC−07:00)'",
+    "sender_name": "Ana",
+    "tone": "technical",
+    "language": "en"
+}'
+```
 
-Hola María,
+Expected JSON response:
 
-Quería darle seguimiento a tu solicitud. Ya he completado la tarea.
-
-Saludos,
-Ana
+```bash
+{
+  "subject": "Review API Changes, Share Sample Payload, & Update Docs",
+  "email": "Good afternoon, Backend Team and QA & DevOps,\n\nI'm writing to review the API changes, share the sample payload, and update the documentation.\n\nChanges:\n- Added `POST /v2/users` endpoint.\n- Request body now requires `email_verified: boolean`.\n- Must log timestamp in ISO format.\n- Default to `false` if missing.\n- Deprecates `username` field in response.\n- Error codes revamped for 400, 401, 403.\n- Rate limits set to 1,000 RPM.\n\n  ```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\": true,\n    \"roles\": [\"user\", \"admin\"]\n  }\n  ```\n\nSee `docs/api_v2.md` for full spec.\n\nDeadline: EOD Friday (UTC−07:00).\n\nSincerely,\nAna"
+}
 ```
 
 ## Testing and CI/CD
