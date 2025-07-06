@@ -1,5 +1,6 @@
 from typing import Dict, List
 
+
 def parse_bullets(raw: str) -> Dict[str, object]:
     """
     Parses bullet-point text into a structured dictionary.
@@ -13,11 +14,7 @@ def parse_bullets(raw: str) -> Dict[str, object]:
             - 'purpose': extracted purpose/subject (empty string if not found)
             - 'points': list of detail strings (without trailing punctuation)
     """
-    result: Dict[str, object] = {
-        "recipient": "",
-        "purpose": "",
-        "points": []
-    }
+    result: Dict[str, object] = {"recipient": "", "purpose": "", "points": []}
     for line in raw.splitlines():
         text = line.lstrip("•- \t").strip()
         if not text:

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/jameelahmercer/Desktop/email-drafting-agent/mlruns/0/77e2b847609b4bc09db86fa597392889/artifacts
+end_time: 1751827421950
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 77e2b847609b4bc09db86fa597392889
+run_name: PCS Component 'email_agent' at Entry Point 'compose_email'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751827421681
+status: 3
+tags: []
+user_id: unknown

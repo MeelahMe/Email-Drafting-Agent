@@ -2,6 +2,7 @@ from email_agent.agent import EmailDraftingAgent
 import mlflow
 import re
 
+
 def compose_email(
     bullets: str,
     sender_name: str = "Your Name",
@@ -15,10 +16,7 @@ def compose_email(
     """
     agent = EmailDraftingAgent()
     result = agent(
-        bullets=bullets,
-        sender_name=sender_name,
-        tone=tone,
-        language=language,
+        bullets=bullets, sender_name=sender_name, tone=tone, language=language,
     )
 
     # Extract subject and email body from the agent's output
@@ -29,10 +27,14 @@ def compose_email(
     if email_body:
         if language.lower().startswith("es"):
             # Replace any leading English greeting with Spanish 'Hola'
-            email_body = re.sub(r"^(?:¡?Hey!?|Hello)\s+([^\n,]+)", r"Hola \1", email_body)
+            email_body = re.sub(
+                r"^(?:¡?Hey!?|Hello)\s+([^\n,]+)", r"Hola \1", email_body
+            )
         elif language.lower().startswith("en"):
             # Replace any leading Spanish greeting with English 'Hello'
-            email_body = re.sub(r"^(?:¡?Hey!?|Hola)\s+([^\n,]+)", r"Hello \1", email_body)
+            email_body = re.sub(
+                r"^(?:¡?Hey!?|Hola)\s+([^\n,]+)", r"Hello \1", email_body
+            )
 
     # Combine subject and body into full email text
     full_email = f"Subject: {subject}\n\n{email_body}"
@@ -44,4 +46,3 @@ def compose_email(
     mlflow.log_text(full_email, "email.txt")
 
     return result
-

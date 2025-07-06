@@ -1,0 +1,16 @@
+Subject: Review API changes, share sample payload, and update docs
+
+Good morning, Backend Team and QA & DevOps,
+
+I wanted to let you know about Review API changes, share sample payload, and update docs.
+
+Changes: Added `POST /v2/users` endpoint, Request body now requires `email_verified: boolean`, Must log timestamp in ISO format, Default to `false` if missing, Deprecates `username` field in response, Error codes revamped for 400, 401, 403, and Rate limits set to 1000 RPM.
+
+```json { "email": "user@example.com", "email_verified": true, "roles": ["user","admin"] } ```.
+
+see `docs/api_v2.md` for full spec.
+
+EOD Friday (UTC−07:00).
+
+Sincerely,
+Ana

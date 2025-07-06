@@ -1,5 +1,6 @@
 from email_agent.agent import EmailDraftingAgent
 
+
 def test_basic():
     bullets = """\
 • Recipient: Taylor
@@ -9,4 +10,3 @@ def test_basic():
     out = EmailDraftingAgent()(bullets=bullets)
     assert "Taylor" in out["email"]
     assert out["subject"].startswith("Follow-up")
-

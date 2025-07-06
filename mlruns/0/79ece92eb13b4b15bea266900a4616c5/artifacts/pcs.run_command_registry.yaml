@@ -1,0 +1,28 @@
+components:
+  email_agent:
+    class_name: null
+    dependencies: {}
+    file_path: entrypoint.py
+    instantiate: false
+    repo: local_repo
+    requirements_path: requirements.txt
+registries: []
+repos:
+  local_repo:
+    path: /Users/jameelahmercer/Desktop/email-drafting-agent
+    type: local
+run_commands:
+  '1880609143328961059':
+    argument_set:
+      bdd363f167d2cb4e1dfbdfb8f76754bdf7d7f0f3:
+        email_agent:
+          compose_email:
+            bullets: "\u2022 Recipient: Mar\xEDa\n\u2022 Purpose: Seguimiento\n\u2022\
+              \ Completed the task"
+            language: es
+            sender_name: Ana
+            tone: friendly
+    component: email_agent
+    entry_point: compose_email
+    log_return_value: true
+runs: {}

@@ -25,4 +25,3 @@ for bullets in test_cases:
     print("\nSUBJECT:", out["subject"])
     print("\nEMAIL:\n", out["email"])
     print("=" * 60 + "\n")
-

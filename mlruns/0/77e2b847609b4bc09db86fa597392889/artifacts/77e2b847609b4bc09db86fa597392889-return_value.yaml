@@ -1,0 +1,10 @@
+email: "Good morning, Backend Team and QA & DevOps,\n\nI wanted to let you know about\
+  \ Review API changes, share sample payload, and update docs.\n\nChanges: Added `POST\
+  \ /v2/users` endpoint, Request body now requires `email_verified: boolean`, Must\
+  \ log timestamp in ISO format, Default to `false` if missing, Deprecates `username`\
+  \ field in response, Error codes revamped for 400, 401, 403, and Rate limits set\
+  \ to 1000 RPM.\n\n```json\n  {\n    \"email\": \"user@example.com\",\n    \"email_verified\"\
+  : true,\n    \"roles\": [\"user\",\"admin\"]\n  }\n  ```\n\u2022 Docs update: see\
+  \ `docs/api_v2.md` for full spec\n\u2022 Deadline: EOD Friday (UTC\u221207:00).\n\
+  \nSincerely,\nAna"
+subject: Review Api Changes, Share Sample Payload, & And Update Docs
