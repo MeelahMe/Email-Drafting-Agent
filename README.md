@@ -167,11 +167,21 @@ Ana
 
 Spin up the service, expose it via ngrok, then fire your payload:
 
+Start your server with:
+
 1. **Start the API server**  
 
 ```bash
    uvicorn app:app --host 0.0.0.0 --port 8000
 ```
+
+When you run the server locally, FastAPI auto‐generates two live docs:
+
+- **Swagger UI**  
+  Open `http://localhost:8000/docs` in your browser to explore and test every endpoint.
+
+- **ReDoc**  
+  Alternatively, view a cleaner spec at `http://localhost:8000/redoc`.
 
 2. **Expose it publicly**
 
